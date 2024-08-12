@@ -1,10 +1,12 @@
 class Solution:
     def eventualSafeNodes(self, graph: List[List[int]]) -> List[int]:
+        ans = []
+        n = len(graph)
+        
         safe = {}
 
-        result = []
-
         def dfs(node):
+
             if node in safe:
                 return safe[node]
 
@@ -12,11 +14,16 @@ class Solution:
             for neighbor in graph[node]:
                 if not dfs(neighbor):
                     return False
+
             safe[node] = True
             return True
 
-        for node in range(len(graph)):
+
+        for node in range(n):
             if dfs(node):
-                result.append(node)
-        return result
+                ans.append(node)
+        return ans
+            
+        
+        
         
