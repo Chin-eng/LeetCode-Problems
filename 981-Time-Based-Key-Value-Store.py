@@ -9,12 +9,6 @@ class TimeMap:
 
         self.dictionary[key].append([value, timestamp]) 
 
-        # obj.set('foo', 'bar1', 1)
-        # obj.set('foo', 'bar2', 2)
-        # obj.set('foo', 'bar3', 10000)
-
-        # {foo: [[bar1, 1], [bar2, 2], [bar3, 10000]]}
-
     def get(self, key: str, timestamp: int) -> str:
         if key not in self.dictionary:
             return ''
@@ -32,6 +26,29 @@ class TimeMap:
                 right = mid - 1
         
         return array[right][0] if right >= 0 else ''
+
+
+
+
+        # { love: [ ['high', 10], ['low', 20] ] }
+
+        
+        # obj.get('love', 5)
+
+
+
+
+        # obj.set('foo', 'bar', 1)
+        # obj.set('foo', 'bar', 3)
+        # obj.set('foo', 'bar', 2)
+
+        # { foo: [ ['bar' 1], ['bar', 2], ['bar', 3] ] }
+
+        # obj.get('bar', 7)
+
+        # [ ['bar' 1], ['bar', 3], ['bar', 2] ]
+
+
             
             
 
