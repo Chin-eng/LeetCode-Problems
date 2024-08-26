@@ -5,15 +5,16 @@ class Solution:
         minValue = float('inf')
 
         while left <= right:
+            if nums[left] <= nums[right]:
+                minValue = min(minValue, nums[left])
+                break
+                
             mid = (left + right) // 2
-
             minValue = min(minValue, nums[mid])
 
             if nums[mid] >= nums[left]:
-                minValue = min(minValue, nums[left])
                 left = mid + 1
             else:
-                minValue = min(minValue, nums[right])
                 right = mid - 1
         
         return minValue
