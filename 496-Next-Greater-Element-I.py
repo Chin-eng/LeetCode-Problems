@@ -4,14 +4,18 @@ class Solution:
         n = len(nums2)
         great_map = {n: index for index, n in enumerate(nums1)}
         result = [-1] * len(nums1)
-        
-        for i in range(n):
-            if nums2[i] in great_map:
-                for j in range(i + 1, n):
-                    if nums2[i] < nums2[j]:
-                        index = great_map[nums2[i]]
-                        result[index] = nums2[j]
-                        break
+
+
+        stack = []
+
+        for i in range(len(nums2)):
+            curr = nums2[i]
+            while stack and curr > stack[-1]:
+                val = stack.pop()
+                index = great_map[val]
+                result[index] = curr
+            if curr in great_map:
+                stack.append(curr)
         return result
 
 
