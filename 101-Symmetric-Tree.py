@@ -8,38 +8,32 @@ class Solution:
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
         
         def isPalindrome(array):
+            
             i = 0
             j = len(array) - 1
-            while i <= j:
-                if array[i] != array[j]:
+            while i < j:
+                if (array[i] == None and array[j]) or (array[i] and array[j] == None):
+                    return False
+                if array[i] and array[j] and array[i].val != array[j].val:
                     return False
                 i += 1
                 j -= 1
             return True
 
+        # queue = [2,2]
+        # currentNode = 1
+
         queue = deque([root])
 
-        # queue = [2,2]
-        # queue_length = 1
-        # localArray = [\null\, 3, 2]
-
         while queue:
-            localArray = []
             queue_length = len(queue)
             for _ in range(queue_length):
                 currentNode = queue.popleft()
-                if currentNode.left:
-                    localArray.append(currentNode.left.val)
+                if currentNode:
                     queue.append(currentNode.left)
-                else:
-                    localArray.append(\null\)
-                if currentNode.right:
-                    localArray.append(currentNode.right.val)
                     queue.append(currentNode.right)
-                else:
-                    localArray.append(\null\)
-
-            if not isPalindrome(localArray):
+                    
+            if not isPalindrome(queue):
                 return False
             
         return True
