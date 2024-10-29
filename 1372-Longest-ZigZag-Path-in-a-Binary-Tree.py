@@ -10,16 +10,17 @@ class Solution:
         self.depth = 0
         
         def dfs(node, direction, depth):
-            if node:
-                self.depth = max(self.depth, depth)
+            if not node:
+                return
+            self.depth = max(self.depth, depth)
              
-                if direction == 'right':
-                    dfs(node.right, 'left', depth + 1)
-                    dfs(node.right, 'right', 0)
+            if direction == 'right':
+                dfs(node.right, 'left', depth + 1)
+                dfs(node.right, 'right', 0)
                 
-                if direction == "left":
-                    dfs(node.left, 'right', depth + 1)
-                    dfs(node.left, 'left', 0)
+            if direction == "left":
+                dfs(node.left, 'right', depth + 1)
+                dfs(node.left, 'left', 0)
 
         dfs(root, 'right', 0)
         dfs(root, 'left', 0)
