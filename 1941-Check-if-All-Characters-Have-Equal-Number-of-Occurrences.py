@@ -3,11 +3,7 @@ class Solution:
         hashmap = defaultdict(int)
         for letter in s:
             hashmap[letter] += 1
-
-        count = hashmap[s[0]]
         
-        for key in hashmap:
-            if hashmap[key] != count:
-                return False
+        frequences = hashmap.values()
 
-        return True
+        return len(set(frequences)) == 1
