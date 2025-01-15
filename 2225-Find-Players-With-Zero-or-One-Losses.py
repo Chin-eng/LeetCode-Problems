@@ -19,13 +19,5 @@ class Solution:
             if loserHash[key] == 1:
                 oneLoss.append(key)
 
-        notLost.sort()
-        oneLoss.sort()
-
-        ans = []
-
-        ans.append(notLost)
-        ans.append(oneLoss)
-
-        return ans
+        return [sorted(notLost), sorted(oneLoss)]
         
