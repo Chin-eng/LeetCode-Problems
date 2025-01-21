@@ -7,15 +7,12 @@ class Solution:
             digit_sum = sum([int(char) for char in str(num)])
             hashmap[digit_sum].append(num)
         
-        print(hashmap)
-
         ans = float("-inf")
 
         for value in hashmap.values():
             if len(value) >= 2:
-                array = sorted(value)
-                sum_array = array[-1] + array[-2]
-                ans = max(ans, sum_array)
+                largest_two = sorted(value, reverse=True)[:2]
+                ans = max(ans, sum(largest_two))
 
         return ans if ans != float("-inf") else -1
         
