@@ -11,14 +11,27 @@ class Solution:
             return sum_value
 
         for num in nums:
+            
             digit_sum = get_digit_sum(num)
-            hashmap[digit_sum].append(num)
+            
+            if digit_sum not in hashmap:
+                hashmap[digit_sum] = (num, -1)
+            else:
+                largest, second_largest = hashmap[digit_sum]
+                if num > largest:
+                    second_largest = largest
+                    largest = num
+                elif num > second_largest:
+                    second_largest = num  
+                
+                hashmap[digit_sum] = (largest, second_largest)       
         
+        print(hashmap.values())
+
         ans = float("-inf")
 
         for value in hashmap.values():
-            if len(value) >= 2:
-                largest_two = sorted(value, reverse=True)[:2]
-                ans = max(ans, sum(largest_two))
+            if value[1] != -1:
+                ans = max(ans, sum(value))
 
         return ans if ans != float("-inf") else -1
