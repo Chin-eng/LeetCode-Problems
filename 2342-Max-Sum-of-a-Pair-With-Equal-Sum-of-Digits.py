@@ -3,8 +3,15 @@ class Solution:
 
         hashmap = defaultdict(list)
 
+        def get_digit_sum(num):
+            sum_value = 0
+            while num:
+                sum_value += num % 10
+                num //= 10
+            return sum_value
+
         for num in nums:
-            digit_sum = sum([int(char) for char in str(num)])
+            digit_sum = get_digit_sum(num)
             hashmap[digit_sum].append(num)
         
         ans = float("-inf")
@@ -15,4 +22,3 @@ class Solution:
                 ans = max(ans, sum(largest_two))
 
         return ans if ans != float("-inf") else -1
-        
