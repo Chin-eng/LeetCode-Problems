@@ -11,9 +11,7 @@ class Solution:
 
 
         for key in hashmap2:
-            if key in hashmap1 and hashmap1[key] >= hashmap2[key]:
-                continue
-            else:
+            if key not in hashmap1 or hashmap1[key] < hashmap2[key]:
                 return False
                 
         return True
