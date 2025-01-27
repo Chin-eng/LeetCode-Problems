@@ -1,34 +1,25 @@
 class Solution:
     def isPathCrossing(self, path: str) -> bool:
-        
-        directions = set()
 
-        directions.add((0,0))
+        directions = {
+            "N" : (0, 1),
+            "S" : (0, -1),
+            "E" : (1, 0), 
+            "W" : (-1, 0)
+        }
 
-        visited = (0, 0)
+        visited = {(0, 0)}
+        x, y = 0, 0
 
         for direction in path:
-            if direction == "N":
-                visited = (visited[0], visited[1] + 1)
-                if visited in directions:
-                    return True
-            elif direction == "E":
-                visited = (visited[0] + 1, visited[1])
-                if visited in directions:
-                    return True
-            elif direction == "S":
-                visited = (visited[0], visited[1] - 1)
-                if visited in directions:
-                    return True
-            else:
-                visited = (visited[0] - 1, visited[1])
-                if visited in directions:
-                    return True
-           
-            directions.add(visited)
+            dx, dy = directions[direction]
+            x += dx
+            y += dy
 
+            if (x, y) in visited:
+                return True
+
+            visited.add((x, y))
 
         return False
-
-
         
