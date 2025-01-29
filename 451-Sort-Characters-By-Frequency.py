@@ -1,16 +1,11 @@
 class Solution:
     def frequencySort(self, s: str) -> str:
 
-        hashmap1 = defaultdict(int)
+        hashmap1 = Counter(s)
 
-        for string in s:
-            hashmap1[string] += 1
-
-        
         hashmap2 = defaultdict(list)
 
-        for key in hashmap1:
-            value = hashmap1[key]
+        for key, value in hashmap1.items():
             hashmap2[value].append(key)
             
         ans = []
