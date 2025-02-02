@@ -1,36 +1,23 @@
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
-        
-        s2_hashmap = defaultdict(int)
+        if len(s1) > len(s2): return False
+
         s1_hashmap = Counter(s1)
+        s2_hashmap = Counter(s2[:len(s1)])
 
-        def anagram(s1_hashmap, hashmap1):
-            for key in s1_hashmap:
-                if key not in hashmap1 or hashmap1[key] != s1_hashmap[key]:
-                    return False
-            return True
-
+        if s1_hashmap == s2_hashmap: return True
         left = 0
-        for right in range(len(s2)):
-            char_right = s2[right]
-            s2_hashmap[char_right] += 1
-            while right - left + 1 > len(s1):
-                char_left = s2[left]
-                s2_hashmap[char_left] -= 1
-                if s2_hashmap[char_left] == 0:
-                    s2_hashmap.pop(char_left)
-                left += 1
-            if len(s1_hashmap) == len(s2_hashmap) and anagram(s1_hashmap, s2_hashmap):
+        for right in range(len(s1), len(s2)):
+            s2_hashmap[s2[right]] += 1
+            s2_hashmap[s2[left]] -= 1
+
+            if s2_hashmap[s2[left]] == 0:
+                s2_hashmap.pop(s2[left])
+
+            left += 1
+
+            if s1_hashmap == s2_hashmap:
                 return True
-        
+
         return False
-
-        
-        
-
-
-
-        
-        
-
         
